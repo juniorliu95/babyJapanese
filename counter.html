@@ -28,20 +28,48 @@ button {
 </style>
 
 <script>
-    function plus_one(){
-        var kaisu = document.getElementById("number").innerHTML;
-        if (parseInt(kaisu) >= 9 || kaisu == "おめでとう！") {
-            document.getElementById("number").innerHTML =  "おめでとう！";
-            document.getElementById("plus").style.backgroundImage(url("https://i.gifer.com/WS2k.gif"))
-        } else {
-            document.getElementById("number").innerHTML = parseInt(kaisu) + 1;
-        }
-        
-    }
-    function reset(){
-        document.getElementById("number").innerHTML = "0";
-    }
+  // get today's date
+  date = new Date();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  date = year + '-' + month + '-' + day;
 
+  // read the json data
+  let data;
+  fetch("./data/counter.json")
+  .then(response => {
+    return response.json();
+  })
+  .then(jsonData => {data = jsonData; refreshCount(data)});
+
+  function refreshCount(data){
+    if (date != data.counter.date || typeof(localStorage.count) == "undefined") {
+      document.getElementById("number").innerHTML = 0;
+      localStorage.count = 0;
+    } else {
+      document.getElementById("number").innerHTML = localStorage.count;
+    };
+  };
+
+  function plus_one(){
+      var kaisu = document.getElementById("number").innerHTML;
+      if (parseInt(kaisu) >= 49 || kaisu == "おめでとう！") {
+          document.getElementById("number").innerHTML =  "おめでとう！";
+          document.getElementById("number").style.backgroundSize = "contain"
+          document.getElementById("number").style.backgroundImage = "url('https://i.gifer.com/WS2k.gif')"
+
+      } else {
+          var t = parseInt(kaisu) + 1;
+          document.getElementById("number").innerHTML = t;
+          localStorage.count = t;
+      };
+      
+  };
+  function reset(){
+      document.getElementById("number").innerHTML = 0;
+      document.getElementById("number").style.backgroundImage = ""
+  };
 </script>
 
 </head>
@@ -52,7 +80,7 @@ button {
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a href="index.html" class="w3-bar-item w3-button w3-theme-l1"><img src="images/baby_logo.webp" alt="logo" width="25" height="25"></img></a>
-    <a href="index.html" class="w3-bar-item w3-button w3-theme-l1"><img src="https://cdn-icons.flaticon.com/png/512/2099/premium/2099166.png?token=exp=1658670709~hmac=ff47c8ef3f66dce08c6cdae91b3a79f6" alt="back" width="25" height="25"></img></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-theme-l1"><img src="images/back-button.png" alt="back" width="25" height="25"></img></a>
     <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Values</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">News</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
@@ -67,10 +95,10 @@ button {
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Counter</a>
+  <!-- <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a> -->
 </nav>
 
 

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="basics/kanaAnki.js"></script>
 <title>babyの日本語！</title>
 <link rel="shortcut icon" href="./images/baobao.jpg" type="image/x-icon">
 <meta charset="UTF-8">
@@ -57,12 +58,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-main" style="margin-left:250px">
 
   <div class="w3-row w3-padding-64">
-    <div class="w3-twothird w3-container">
+    <div class="w3-container">
       <h1 id="h_1" class="w3-text-teal" style="visibility:hidden;">五十音順</h1>
       <h1 class="w3-text-teal">五十音順</h1>
       <p></p>
     </div>
-    <div class="w3-twothird w3-container">
+    <div class="w3-container">
       <p class="w3-center">
         <script type="text/javascript" src="basics/kanaTable.js"></script>
       </p>
@@ -70,14 +71,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   </div>
 
   <div class="w3-row">
-    <div class="w3-twothird w3-container">
+    <div class="w3-container">
       <h1 id="h_2" class="w3-text-teal" style="visibility:hidden;">カナ暗記</h1>
       <h1 class="w3-text-teal">カナ暗記</h1>
-      <p></p>
     </div>
-    <div class="w3-twothird w3-container">
-      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+    <div class="w3-container" style="box-sizing:content-box;">
+      <p id="anki-question" class="w3-border w3-padding-32 w3-center" style="box-sizing:content-box;"></p>
+      <p id="anki-answer" class="w3-border w3-padding-32 w3-center" style="box-sizing:content-box;"></p>
+      <button id="anki-question-button" style="border: 1px solid #000; text-overflow: inherit;" onclick="kanaAnki()">New question!</button>
+      <button id="anki-answer-button" style="border: 1px solid #000; text-overflow: inherit;" onclick="showKanaAnkiAns()">Show answer!</button>
     </div>
   </div>
 

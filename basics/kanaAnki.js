@@ -35,6 +35,10 @@ function kanaAnki(){
 
     document.getElementById("anki-question").innerHTML = "";
     document.getElementById("anki-answer").innerHTML = "";
+
+    kanaAns["hira"] = "";
+    kanaAns["kata"] = "";
+    kanaAns["eiji"] = "";
     // first define the length of practice
     let l = 0;
     while (l == 0) {

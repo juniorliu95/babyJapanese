@@ -3,6 +3,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="basics/kanaAnki.js"></script>
+<script src="basics/verbKatsu.js"></script>
 <title>babyの日本語！</title>
 <link rel="shortcut icon" href="./images/baobao.jpg" type="image/x-icon">
 <meta charset="UTF-8">
@@ -101,11 +102,21 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div class="w3-twothird w3-container">
       <h1 id="h_4" class="w3-text-teal" style="visibility:hidden;">動詞活用練習</h1>
       <h1 id="h_4" class="w3-text-teal">動詞活用練習</h1>
-      <p></p>
     </div>
     <div class="w3-twothird w3-container">
-      <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-      <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+      <div id="katsu-question" style="box-sizing:content-box;float:left; border: 1px solid #000;box-sizing:content-box; width:100%;height:30px;text-align: center;margin: auto;font-size: 20px;"></div>
+
+      <div style="box-sizing:content-box;float:left;width:100%;height:150px;margin-top: 10px;">
+      <label for="katsu-answer">答えは:</label>
+      <input id="katsu-answer" type="text" value="" style="box-sizing:content-box;width:40%;height:30px;margin-bottom: 20px;margin-right:10px" placeholder="ここに答えを入力！"></input>
+      <br>
+      <p style="float:left;box-sizing:content-box;height:30px;">正解は:</p>
+      <p id="katsu-correct" style="float:left;box-sizing:content-box;width:20%;height:30px;"></p>
+      </div>
+
+      <button id="katsu-question-button" style="float:left;border: 1px solid #000; border-radius:5%;" onclick="katsuAnki()">New question!</button>
+      <button id="katsu-answer-button" style="margin-left: 10px;float:left;border: 1px solid #000; border-radius:5%; background-color: rgb(30, 176, 28);color: white;font-size: large;" onclick="showKatsuAnkiAns()">Submit!</button>
+      <p style="float:right;text-align: right;">Correct/Total: <b id="katsu-count" style="font-size:large; color: red">0/0</b></p>
     </div>
   </div>
 

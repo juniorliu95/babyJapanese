@@ -8,7 +8,7 @@ function getRandomInt(max) {
 
 function getKanaPairsSub(table, x, y){
     // get the kana pairs for one table
-    console.log(x, y)
+    // console.log(x, y)
     var temp = document.getElementById(table);
     temp = temp.getElementsByTagName("tr")[x+1]; // first row are titles
     console.log(temp);

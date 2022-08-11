@@ -27,7 +27,16 @@ button {
 }
 </style>
 
+<!-- include google clound storage apis -->
+<script type="text/javascript" src="gSheet.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+
 <script>
+  let spreadsheetId = "1r3YAoryMYeHiwC1eQaJFTjf0pk_Dj0kR3tavWFu5cAU";
+  let range = "Class Data!B2:3"
+  // let sheet_data = getValues(spreadsheetId, range, null);
+
   // get today's date
   date = new Date();
   let year = date.getFullYear();
@@ -37,18 +46,20 @@ button {
 
   // read the json data
   let data;
-  fetch("./data/counter.json")
+  // fetch("./data/counter.json")
+  fetch("https://storage.googleapis.com/babyjapanese/counter.json", {mode: 'cors'})
   .then(response => {
     return response.json();
   })
-  .then(jsonData => {data = jsonData; refreshCount(data)});
+  .then(jsonData => {data = jsonData; retrieveCount(data);});
 
-  function refreshCount(data){
-    if (date != data.counter.date || typeof(localStorage.count) == "undefined") {
+  function retrieveCount(data){
+    if (date != data.counter.date) {
       document.getElementById("number").innerHTML = 0;
-      localStorage.count = 0;
+      data.counter.count = 0;
+      data.counter.date = date;
     } else {
-      document.getElementById("number").innerHTML = localStorage.count;
+      document.getElementById("number").innerHTML = data.counter.count;
     };
   };
 
@@ -62,13 +73,14 @@ button {
       } else {
           var t = parseInt(kaisu) + 1;
           document.getElementById("number").innerHTML = t;
-          localStorage.count = t;
+          data.counter.count = t;
       };
       
   };
   function reset(){
       document.getElementById("number").innerHTML = 0;
       document.getElementById("number").style.backgroundImage = ""
+      data.counter.count = 0;
   };
 </script>
 

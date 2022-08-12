@@ -49,7 +49,7 @@ function gapiLoaded() {
    *  Sign in the user upon button click.
    */
   function handleAuthClick() {
-    tokenClient.callback = async (resp) => {
+    tokenClient.callback = (resp) => {
       if (resp.error !== undefined) {
         throw (resp);
       }
@@ -63,6 +63,7 @@ function gapiLoaded() {
       // Skip display of account chooser and consent dialog for an existing session.
       tokenClient.requestAccessToken({prompt: ''});
     }
+    console.log("auth 2.0 done...");
   }
 
 

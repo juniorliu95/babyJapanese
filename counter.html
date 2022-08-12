@@ -29,62 +29,10 @@ button {
 
 <!-- include google clound apis -->
 <script type="text/javascript" src="gSheet.js"></script>
-<!-- <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-<script src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script> -->
-<script async=false src="https://apis.google.com/js/api.js"></script>
-<script async=false src="https://accounts.google.com/gsi/client"></script>
-<script async=false>
-  gapi.load('client', intializeGapiClient);
-</script>
-<script async=false>
-  gisLoaded();
-  handleAuthClick()
-
-  let spreadsheetId = "1r3YAoryMYeHiwC1eQaJFTjf0pk_Dj0kR3tavWFu5cAU";
-  let range = "B1:B2";
-  console.log("debugging");
-  let sheet_data = getValues(spreadsheetId, range, null);
-
-  // get today's date
-  date = new Date();
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  date = year + '-' + month + '-' + day;
-
-  retrieveCount(sheet_data);
-
-  function retrieveCount(sheet_data){
-    if (date != sheet_data[0][0]) {
-      document.getElementById("number").innerHTML = 0;
-      sheet_data[1][0] = 0;
-      sheet_data[0][0] = date;
-    } else {
-      document.getElementById("number").innerHTML = sheet_data[1][0];
-    };
-  };
-
-  function plus_one(){
-      var kaisu = document.getElementById("number").innerHTML;
-      if (parseInt(kaisu) >= 49 || kaisu == "おめでとう！") {
-          document.getElementById("number").innerHTML =  "おめでとう！";
-          document.getElementById("number").style.backgroundSize = "contain"
-          document.getElementById("number").style.backgroundImage = "url('https://i.gifer.com/WS2k.gif')"
-
-      } else {
-          var t = parseInt(kaisu) + 1;
-          document.getElementById("number").innerHTML = t;
-          sheet_data[1][0] = t;
-      };
-      
-  };
-  function reset(){
-      document.getElementById("number").innerHTML = 0;
-      document.getElementById("number").style.backgroundImage = ""
-      sheet_data[1][0] = 0;
-  };
-</script>
-
+<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+<!-- <script async=false src="https://apis.google.com/js/api.js"></script>
+<script async=false src="https://accounts.google.com/gsi/client"></script> -->
 </head>
 <body>
 
@@ -139,29 +87,53 @@ button {
 <!-- END MAIN -->
 </div>
 
-<script src="sidebar_func.js">
-// // Get the Sidebar
-// var mySidebar = document.getElementById("mySidebar");
+<script src="sidebar_func.js"></script>
+<script async=false>
+  handleAuthClick()
 
-// // Get the DIV with overlay effect
-// var overlayBg = document.getElementById("myOverlay");
+  let spreadsheetId = "1r3YAoryMYeHiwC1eQaJFTjf0pk_Dj0kR3tavWFu5cAU";
+  let range = "B1:B2";
+  console.log("debugging");
+  let sheet_data = getValues(spreadsheetId, range, null);
 
-// // Toggle between showing and hiding the sidebar, and add overlay effect
-// function w3_open() {
-//   if (mySidebar.style.display === 'block') {
-//     mySidebar.style.display = 'none';
-//     overlayBg.style.display = "none";
-//   } else {
-//     mySidebar.style.display = 'block';
-//     overlayBg.style.display = "block";
-//   }
-// }
+  // get today's date
+  date = new Date();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  date = year + '-' + month + '-' + day;
 
-// // Close the sidebar with the close button
-// function w3_close() {
-//   mySidebar.style.display = "none";
-//   overlayBg.style.display = "none";
-// }
+  retrieveCount(sheet_data);
+
+  function retrieveCount(sheet_data){
+    if (date != sheet_data[0][0]) {
+      document.getElementById("number").innerHTML = 0;
+      sheet_data[1][0] = 0;
+      sheet_data[0][0] = date;
+    } else {
+      document.getElementById("number").innerHTML = sheet_data[1][0];
+    };
+  };
+
+  function plus_one(){
+      var kaisu = document.getElementById("number").innerHTML;
+      if (parseInt(kaisu) >= 49 || kaisu == "おめでとう！") {
+          document.getElementById("number").innerHTML =  "おめでとう！";
+          document.getElementById("number").style.backgroundSize = "contain"
+          document.getElementById("number").style.backgroundImage = "url('https://i.gifer.com/WS2k.gif')"
+
+      } else {
+          var t = parseInt(kaisu) + 1;
+          document.getElementById("number").innerHTML = t;
+          sheet_data[1][0] = t;
+      };
+      
+  };
+  function reset(){
+      document.getElementById("number").innerHTML = 0;
+      document.getElementById("number").style.backgroundImage = ""
+      sheet_data[1][0] = 0;
+  };
 </script>
 
 </body>

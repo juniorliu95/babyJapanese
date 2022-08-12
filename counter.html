@@ -31,12 +31,11 @@ button {
 <script type="text/javascript" src="gSheet.js"></script>
 <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
 <script src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-
 <script>
   let spreadsheetId = "1r3YAoryMYeHiwC1eQaJFTjf0pk_Dj0kR3tavWFu5cAU";
   let range = "B1:B2";
+  console.log("debugging");
   let sheet_data = getValues(spreadsheetId, range, null);
-  console.log(sheet_data);
 
   // get today's date
   date = new Date();
@@ -45,22 +44,15 @@ button {
   let day = date.getDate();
   date = year + '-' + month + '-' + day;
 
-  // read the json data
-  let data;
-  // fetch("./data/counter.json")
-  fetch("https://storage.googleapis.com/babyjapanese/counter.json", {mode: 'cors'})
-  .then(response => {
-    return response.json();
-  })
-  .then(jsonData => {data = jsonData; retrieveCount(data);});
+  retrieveCount(sheet_data);
 
-  function retrieveCount(data){
-    if (date != data.counter.date) {
+  function retrieveCount(sheet_data){
+    if (date != sheet_data[0][0]) {
       document.getElementById("number").innerHTML = 0;
-      data.counter.count = 0;
-      data.counter.date = date;
+      sheet_data[1][0] = 0;
+      sheet_data[0][0] = date;
     } else {
-      document.getElementById("number").innerHTML = data.counter.count;
+      document.getElementById("number").innerHTML = sheet_data[1][0];
     };
   };
 
@@ -74,14 +66,14 @@ button {
       } else {
           var t = parseInt(kaisu) + 1;
           document.getElementById("number").innerHTML = t;
-          data.counter.count = t;
+          sheet_data[1][0] = t;
       };
       
   };
   function reset(){
       document.getElementById("number").innerHTML = 0;
       document.getElementById("number").style.backgroundImage = ""
-      data.counter.count = 0;
+      sheet_data[1][0] = 0;
   };
 </script>
 

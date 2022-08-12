@@ -23,8 +23,8 @@ function gapiLoaded() {
    * Callback after the API client is loaded. Loads the
    * discovery doc to initialize the API.
    */
-  async function intializeGapiClient() {
-    await gapi.client.init({
+  function intializeGapiClient() {
+    gapi.client.init({
       apiKey: API_KEY,
       discoveryDocs: [DISCOVERY_DOC],
     });
@@ -42,7 +42,7 @@ function gapiLoaded() {
     //   callback: '', // defined later
     });
     gisInited = true;
-    // handleAuthClick();
+    handleAuthClick();
   }
 
   /**
@@ -53,7 +53,6 @@ function gapiLoaded() {
       if (resp.error !== undefined) {
         throw (resp);
       }
-      await listMajors();
     };
 
     if (gapi.client.getToken() === null) {
@@ -83,7 +82,7 @@ function getValues(spreadsheetId, range, callback) {
     } catch (err) {
         console.log(err.message);
     }
-    return result;
+    return result.values;
   }
 
 // write single range Values
@@ -96,7 +95,7 @@ function updateValues(spreadsheetId, range, valueInputOption, _values, callback)
     ];
     values = _values;
     const body = {
-      values: values,
+      "values": values,
     };
     try {
       gapi.client.sheets.spreadsheets.values.update({

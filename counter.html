@@ -27,11 +27,17 @@ button {
 }
 </style>
 
-<!-- include google clound storage apis -->
+<!-- include google clound apis -->
 <script type="text/javascript" src="gSheet.js"></script>
-<script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-<script src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+<!-- <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script> -->
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://accounts.google.com/gsi/client"></script>
 <script>
+  gapi.load('client', intializeGapiClient);
+  gisLoaded()
+  handleAuthClick();
+  
   let spreadsheetId = "1r3YAoryMYeHiwC1eQaJFTjf0pk_Dj0kR3tavWFu5cAU";
   let range = "B1:B2";
   console.log("debugging");

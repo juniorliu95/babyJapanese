@@ -39,10 +39,10 @@ function gapiLoaded() {
     tokenClient = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: SCOPES,
-    //   callback: '', // defined later
+      callback: '', // defined later
     });
     gisInited = true;
-    handleAuthClick();
+    console.log("gis loaded");
   }
 
   /**
@@ -53,7 +53,7 @@ function gapiLoaded() {
       if (resp.error !== undefined) {
         throw (resp);
       }
-    };
+    }; // define callback
 
     if (gapi.client.getToken() === null) {
       // Prompt the user to select a Google Account and ask for consent to share their data

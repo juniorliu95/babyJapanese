@@ -35,8 +35,10 @@ button {
 <script src="https://accounts.google.com/gsi/client"></script>
 <script async=false>
   gapi.load('client', intializeGapiClient);
+</script>
+<script async=false>
   gisLoaded();
-  setTimeout(handleAuthClick(), 2);
+  handleAuthClick()
 
   let spreadsheetId = "1r3YAoryMYeHiwC1eQaJFTjf0pk_Dj0kR3tavWFu5cAU";
   let range = "B1:B2";

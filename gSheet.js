@@ -29,6 +29,7 @@ function gapiLoaded() {
       discoveryDocs: [DISCOVERY_DOC],
     });
     gapiInited = true;
+    handleAuthClick()
     console.log("initialized");
   };
 
@@ -110,7 +111,7 @@ function updateValues(spreadsheetId, range, valueInputOption, _values, callback)
         if (callback) callback(response);
       });
     } catch (err) {
-      document.getElementById('content').innerText = err.message;
+      console.log(err.message);
       return;
     }
   }
